@@ -1,0 +1,4 @@
+{
+  "ItemId": {"S": "001"},
+  "Value":  {"S": "value of 001"}
+}
