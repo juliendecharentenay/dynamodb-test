@@ -29,6 +29,20 @@ aws dynamodb put-item --table-name DynamoDbTestTable --item file://./assets/item
 aws dynamodb put-item --table-name DynamoDbTestTable --item file://./assets/item3.json
 ```
 
+Using a local dynamodb installation:
+```
+aws dynamodb create-table \
+    --endpoint-url http://localhost:8000 \
+    --table-name DynamoDbTestTable \
+    --billing-mode PAY_PER_REQUEST \
+    --attribute-definitions AttributeName=ItemId,AttributeType=S \
+    --key-schema AttributeName=ItemId,KeyType=HASH 
+
+aws dynamodb put-item --endpoint-url http://localhost:8000 --table-name DynamoDbTestTable --item file://./assets/item1.json
+aws dynamodb put-item --endpoint-url http://localhost:8000 --table-name DynamoDbTestTable --item file://./assets/item2.json
+aws dynamodb put-item --endpoint-url http://localhost:8000 --table-name DynamoDbTestTable --item file://./assets/item3.json
+```
+
 ## Compile the lambda function
 It is assumed the compilation is undertaken using a linux OS. The following compilation flag allows
 for static linking of the executable - to be self contained and suitable for the lambda provided
